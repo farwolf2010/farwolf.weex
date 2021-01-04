@@ -310,9 +310,11 @@ WX_EXPORT_METHOD(@selector(invokeNativeCallBack:))
 
 -(void)enableBackGesture
 {
-    //    if(  weexInstance.viewController.navigationController.interactivePopGestureRecognizer.delegate==nil)
-    weexInstance.viewController.navigationController.interactivePopGestureRecognizer.delegate=nil;
-    weexInstance.viewController.navigationController.interactivePopGestureRecognizer.delegate = self;
+    weexInstance.viewController.navigationController.interactivePopGestureRecognizer.enabled=true;
+}
+-(void)disableBackGesture
+{
+    weexInstance.viewController.navigationController.interactivePopGestureRecognizer.enabled=NO;
 }
 -(void)dismissFull:(NSDictionary*)param animated:(BOOL)animated
 {

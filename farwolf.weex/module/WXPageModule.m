@@ -67,11 +67,14 @@ WX_EXPORT_METHOD_SYNC(@selector(statusBarHeight))
 }
 -(void)enableBackKey:(BOOL)enable
 {
-    
+    WXNormalViewContrller *vc=(WXNormalViewContrller*) weexInstance.viewController;
+    vc.enbalGestureBack=enable;
+//    vc.navigationController.interactivePopGestureRecognizer.enabled=enable;
 }
 -(void)setBackKeyCallback:(WXModuleKeepAliveCallback)callback
 {
-    
+    WXNormalViewContrller *vc=(WXNormalViewContrller*) weexInstance.viewController;
+    vc.gestureCallback=callback;
 }
 -(void)setMainPage:(NSString*)url
 {

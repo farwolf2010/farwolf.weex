@@ -18,7 +18,7 @@
 #import "ErrorControl.h"
 #import "Page.h"
 #import "IQKeyboardReturnKeyHandler.h"
-@interface WXNormalViewContrller : UIViewController<SRWebSocketDelegate>
+@interface WXNormalViewContrller : UIViewController<SRWebSocketDelegate,UIGestureRecognizerDelegate>
 //- (instancetype)initWith:(NSString *)url;
 //@property (nonatomic, strong) IQKeyboardReturnKeyHandler    *returnKeyHandler;
  
@@ -28,6 +28,8 @@
 @property(strong,nonatomic) UIButton *refresh;
 @property(nonatomic)BOOL isInView;
 @property(nonatomic)BOOL isLanscape;
+@property(nonatomic)BOOL enbalGestureBack;
+@property (copy,nonatomic)  WXModuleKeepAliveCallback gestureCallback;
 @property(nonatomic)BOOL debug;
 @property(nonatomic)BOOL isFinish;
 @property(nonatomic)BOOL preload;

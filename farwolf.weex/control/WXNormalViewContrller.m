@@ -96,6 +96,9 @@ static BOOL isshowErr;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.enbalGestureBack=true;
+    self.navigationController.interactivePopGestureRecognizer.delegate=nil;
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
     __weak typeof (self)weakSelf=self;
     printf("viewDidLoad retain count = %ld\n",CFGetRetainCount((__bridge CFTypeRef)(self)));
     self.naviIndex=self.TopViewController.navigationController.childViewControllers.count;
@@ -125,6 +128,8 @@ static BOOL isshowErr;
     if ([self.navigationController isKindOfClass:[WXNormalViewContrller class]]) {
         self.navigationController.navigationBarHidden = YES;
     }
+    
+    
     
     
 #ifdef DEBUG
@@ -428,8 +433,20 @@ static BOOL isshowErr;
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    if (!self.navigationController || [self.navigationController.viewControllers count] == 1) {
+    if(self.navigationController.viewControllers.count == 1){
         return NO;
+    }
+    if (self.navigationController !=nil) {
+        if(self.enbalGestureBack==false){
+            if(self.gestureCallback!=nil){
+                self.gestureCallback(@{}, true);
+            }
+            NSLog(@"gestureRecognizerShouldBegin");
+            return NO;
+        }else{
+            return YES;
+        }
+       
     }
     return YES;
 }
@@ -756,6 +773,7 @@ static BOOL isshowErr;
     }
 }
 
+ 
 -(void)gotoset
 {
     
